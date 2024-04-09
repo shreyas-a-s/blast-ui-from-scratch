@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BLASTN</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    #inputBox {
+      padding: 10px;
+      margin: 20px;
+    }
+    #result {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>BlastN</h1>
+  <textarea id="inputBox" placeholder="Enter sequence..." rows="20" cols="90"></textarea>
+  <button onclick="sendRequest()">Run blastn</button>
+  <div id="result"></div>
+
+  <script>
+    function sendRequest() {
+      var inputText = document.getElementById("inputBox").value;
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "/replace_text", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            document.getElementById("result").innerText = xhr.responseText;
+          } else {
+            console.error("Error:", xhr.status);
+          }
+        }
+      };
+      xhr.send("text=" + encodeURIComponent(inputText));
+    }
+  </script>
+</body>
+</html>

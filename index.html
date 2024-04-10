@@ -28,7 +28,7 @@
     function sendRequest() {
       var inputText = document.getElementById("inputBox").value;
       var xhr = new XMLHttpRequest();
-      xhr.open("POST", "/replace_text", true);
+      xhr.open("POST", "/run_blast", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {

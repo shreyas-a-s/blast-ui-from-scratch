@@ -32,8 +32,8 @@ app = Flask(__name__)
 def index():
     return open('index.html').read()
 
-@app.route('/replace_text', methods=['POST'])
-def replace_text():
+@app.route('/run_blast', methods=['POST'])
+def run_blast():
     parameter = request.form['text']
     run_blastn(parameter)
     return read_file('output_file.txt')

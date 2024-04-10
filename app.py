@@ -9,7 +9,7 @@ def run_blastn(parameter):
         file.write(parameter)
 
     # Run the blast with the given parameter
-    process = subprocess.Popen(['blastn', '-query', 'sequence.txt', '-db', 'azadirachta-indica-blast-test/azadirachta-indica', '-out', 'output_file.txt', '-outfmt', '6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    process = subprocess.Popen(['blastn', '-query', 'sequence.txt', '-db', 'azadirachta-indica-blast-test/azadirachta-indica', '-out', 'output_file.txt', '-max_target_seqs', '500', '-evalue', '0.001', '-word_size', '11', '-gapopen', '5', '-gapextend', '2', '-penalty', '-2', '-reward', '1'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout, stderr = process.communicate()
 
     # Check if there was an error
